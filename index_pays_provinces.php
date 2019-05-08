@@ -85,7 +85,6 @@ legend{
 	padding: 2px 6px;
 	}
 </style>
-<!--Insertion du code Javascript pour JQuery et Ajax -->
 
         <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
         <script type="text/javascript" 
@@ -94,8 +93,11 @@ legend{
         src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type="text/javascript">
 
+            // Drop down list des pays
             var select = document.createElement('select');
 
+
+            // Fonction pour aller chercher les pays et les mettre dans le drop down list
             function getPays()
             {
                 
@@ -122,7 +124,6 @@ legend{
                 };
 
                 sectionPays.appendChild(select);
-                //select.addEventListener("change", getProv);
                 select.addEventListener("change", function(){
                     getProv(select.value);
                 });
@@ -130,15 +131,13 @@ legend{
                 xhr.send(null);
             }
 
-            $( document ).ready( getPays );
-            //$( document ).ready( getProv(1) );
-
+            // Fonction pour aller chercher les provinces et les mettre dans le drop down list
             function getProv(pays)
             {
                 var sectionProvinces = document.getElementById("liste-provinces");
 
-                if(sectionProvinces.firstChild != null)
-                    sectionProvinces.removeChild(sectionProvinces.firstChild);
+                if(sectionProvinces.firstChild !== null)
+                    sectionProvinces.removeChild(sectionProvinces.lastChild);
 
                 
                 var xhr = new XMLHttpRequest();
@@ -170,10 +169,13 @@ legend{
                 xhr.send(null);
             }
 
+            function initialise(){
+                getPays();
+                getProv(1);
+            }
 
+            $( document ).ready( initialise );
         </script>
-
-
 </head>
 
 <body>
