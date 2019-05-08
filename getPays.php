@@ -1,6 +1,4 @@
 <?php
-	//$zip = $_GET['zipcode'];
-
 	require_once 'dbconfig.inc.php';
 	$conn = mysqli_connect($host, $user, $password, $dbResidence);
 	mysqli_set_charset($conn, "utf8");
