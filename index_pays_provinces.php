@@ -100,12 +100,13 @@ legend{
 
             // Drop down list des pays
             var select = document.createElement('select');
+            // Préciser le pays selectionné au départ
+            var defaultCountry = 1;
 
 
             // Fonction pour aller chercher les pays et les mettre dans le drop down list
             function getPays()
             {
-                
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", "getPays.php", true);
 
@@ -124,8 +125,8 @@ legend{
                             option.appendChild(text);
                             select.appendChild(option);
                         }
+                        select.value = defaultCountry;
                     }
-                    select.value = 1;
                 };
 
                 sectionPays.appendChild(select);
@@ -166,7 +167,6 @@ legend{
                             selectProv.appendChild(option);
                         }
                     }
-
                 };
 
                 sectionProvinces.appendChild(selectProv);
@@ -176,7 +176,7 @@ legend{
 
             function initialise(){
                 getPays();
-                getProv(1);
+                getProv(defaultCountry);
             }
 
             $( document ).ready( initialise );

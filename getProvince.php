@@ -9,12 +9,18 @@
 
 		$result = mysqli_query($conn, $query);
 
-		while($row = mysqli_fetch_assoc($result))
-		{
-			$provid = $row['id'];
-			$provnom = $row['name'];
+		// Vérifier si la base de donnee retourne au moins un enregistrement avec l'ID donne
+		if(mysqli_num_rows($result)>0){
+			while($row = mysqli_fetch_assoc($result))
+			{
+				$provid = $row['id'];
+				$provnom = $row['name'];
 
-			$arrayProv[ ] = array("id" => $provid, "province" => $provnom);
+				$arrayProv[ ] = array("id" => $provid, "province" => $provnom);
+			}
+			
+		}else{
+			$arrayProv[ ] = array("id" => 'N/A', "province" => 'N/A');
 		}
 
 		echo json_encode($arrayProv);
